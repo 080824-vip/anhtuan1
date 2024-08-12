@@ -27,7 +27,7 @@ if ! command -v git &> /dev/null; then
 fi
 
 # Clone the repository
-git clone https://github.com/080824-vip/anhtuan.git
+git clone https://github.com/240724/anhtuan.git
 
 # Kiểm tra xem quá trình clone có thành công không
 if [ $? -ne 0 ]; then
@@ -57,6 +57,10 @@ if [ -f "anhtuan500.zip" ]; then
     
     # Source .bashrc to apply changes immediately.
     source ~/.bashrc
+    
+    # Tạo thư mục proxyserver và tệp used_keys.log nếu chưa tồn tại
+    mkdir -p /root/proxyserver
+    touch /root/proxyserver/used_keys.log
     
     echo "########################"
     echo " liên hệ hỗ trợ telegram @ipv6anhtuan"

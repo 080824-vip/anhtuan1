@@ -27,7 +27,7 @@ if ! command -v git &> /dev/null; then
 fi
 
 # Clone the repository
-git clone https://github.com/240724/anhtuan.git
+git clone https://github.com/080824-vip/anhtuan.git
 
 # Kiểm tra xem quá trình clone có thành công không
 if [ $? -ne 0 ]; then
@@ -72,7 +72,7 @@ if [ -f "anhtuan500.zip" ]; then
     echo " liên hệ hỗ trợ telegram @ipv6anhtuan"
     echo " +44 7529 643977 "
     echo "########################"
-    echo "Thiết lập hoàn tất! Vui lòng nhập 'cd  anhtuan' sau đó nhập tiếp 'anhtuan' để chạy script."
+    echo "Thiết lập hoàn tất! Vui lòng nhập 'cd ~/anhtuan' sau đó nhập tiếp 'anhtuan' để chạy script."
 else
     echo "Tệp anhtuan500.zip không tồn tại!"
     exit 1

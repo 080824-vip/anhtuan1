@@ -62,6 +62,12 @@ if [ -f "anhtuan500.zip" ]; then
     mkdir -p /root/proxyserver
     touch /root/proxyserver/used_keys.log
     
+    # Kiểm tra xem tệp key.key có tồn tại không
+    if [ ! -f "key.key" ]; then
+        echo "Tệp key.key không tồn tại! Vui lòng tạo hoặc sao chép tệp key.key vào thư mục anhtuan."
+        exit 1
+    fi
+    
     echo "########################"
     echo " liên hệ hỗ trợ telegram @ipv6anhtuan"
     echo " +44 7529 643977 "

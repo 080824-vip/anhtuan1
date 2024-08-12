@@ -72,7 +72,7 @@ if [ -f "anhtuan500.zip" ]; then
     echo " liên hệ hỗ trợ telegram @ipv6anhtuan"
     echo " +44 7529 643977 "
     echo "########################"
-    echo "Thiết lập hoàn tất! Vui lòng nhập 'cd ~/anhtuan' sau đó nhập tiếp 'anhtuan' để chạy script."
+    echo "Thiết lập hoàn tất! Vui lòng nhập 'cd  anhtuan' sau đó nhập tiếp 'anhtuan' để chạy script."
 else
     echo "Tệp anhtuan500.zip không tồn tại!"
     exit 1

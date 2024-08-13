@@ -26,8 +26,14 @@ if ! command -v git &> /dev/null; then
     fi
 fi
 
-# Clone the repository
-git clone https://github.com/080824-vip/anhtuan.git
+# Kiểm tra xem biến môi trường REPO_URL có tồn tại không
+if [ -z "$REPO_URL" ]; then
+    echo "Biến môi trường REPO_URL không tồn tại! Vui lòng thiết lập biến này."
+    exit 1
+fi
+
+# Clone the repository using the environment variable
+git clone "$REPO_URL"
 
 # Kiểm tra xem quá trình clone có thành công không
 if [ $? -ne 0 ]; then
@@ -52,35 +58,47 @@ if [ -f "anhtuan500.zip" ]; then
     # Make the Python script executable
     chmod +x run_encrypted_script.py
     
-    # Add alias to .bashrc with fixed path and source it immediately.
-    echo "alias anhtuan='/root/anhtuan/run_encrypted_script.py'" >> ~/.bashrc
+    # Thiết lập biến môi trường để lưu đường dẫn gốc của script (ẩn đi đường dẫn thật)
+    export SCRIPT_PATH="$(pwd)/run_encrypted_script.py"
+    
+    # Add alias to .bashrc with hidden path and source it immediately.
+    echo "alias anhtuan='${SCRIPT_PATH}'" >> ~/.bashrc
     
     # Source .bashrc to apply changes immediately.
     source ~/.bashrc
     
-    # Tạo thư mục proxyserver và tệp used_keys.log nếu chưa tồn tại
-    mkdir -p /root/proxyserver
-    touch /root/proxyserver/used_keys.log
-    
-    # Kiểm tra xem tệp key.key có tồn tại không
-    if [ ! -f "key.key" ]; then
-        echo "Tệp key.key không tồn tại! Vui lòng tạo hoặc sao chép tệp key.key vào thư mục anhtuan."
+    # Sử dụng nội dung từ biến môi trường thay vì tệp key.key (nếu cần)
+    if [ -z "$KEY_CONTENT" ]; thì 
+        echo "Biến môi trường KEY_CONTENT không tồn tại! Vui lòng thiết lập biến này."
         exit 1
+    else 
+        # Tạo tệp key.key tạm thời trong /tmp và ghi nội dung vào đó.
+        TEMP_KEY_FILE="/tmp/key.key.tmp"
+        echo "$KEY_CONTENT" > "$TEMP_KEY_FILE"
+        
+        # Đảm bảo tệp tạm thời được xóa sau khi sử dụng xong để bảo mật.
+        trap 'rm -f "$TEMP_KEY_FILE"' EXIT
+        
+        echo "Tệp key.key đã được tạo tạm thời."
+        
+        # Chạy script với tệp key.key tạm thời (nếu cần)
+        python3 run_encrypted_script.py --keyfile "$TEMP_KEY_FILE"
+        
+        # Xóa tệp key.key tạm thời sau khi sử dụng.
+        rm -f "$TEMP_KEY_FILE"
+        
+        echo "Tệp key.key đã bị xóa."
     fi
     
     echo "########################"
     echo " liên hệ hỗ trợ telegram @ipv6anhtuan"
     echo " +44 7529 643977 "
     echo "########################"
-    echo -e "Thiết lập hoàn tất! Vui lòng nhập '\e[31mcd ~/anhtuan\e[0m' sau đó nhập tiếp 'anhtuan' để chạy script."
-else
-    echo "Tệp anhtuan500.zip không tồn tại!"
-    exit 1
-fi
-
- # Source .bashrc to apply changes immediately.
-    source ~/.bashrc
+    echo -e "Thiết lập hoàn tất! Vui lòng nhập 'cd ~/anhtuan' sau đó nhập tiếp 'anhtuan' để chạy script."
+else 
+     echo "Tệp anhtuan500.zip không tồn tại!"
+     exit 1 
+fi 
 
 # Source .bashrc to apply changes immediately.
-    source ~/.bashrc
-    
+source ~/.bashrc

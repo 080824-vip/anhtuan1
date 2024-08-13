@@ -8,14 +8,6 @@ if [ -z "$KEY_CONTENT" ]; then
     exit 1
 fi
 
-# Kiểm tra xem biến môi trường REPO_URL đã được thiết lập chưa
-if [ -z "$REPO_URL" ]; then
-    echo "Biến môi trường REPO_URL không tồn tại! Vui lòng thiết lập biến này trước khi chạy script."
-    echo "Sử dụng lệnh sau để thiết lập biến môi trường:"
-    echo "export REPO_URL=\"https://github.com/080824-vip/anhtuan.git\""
-    exit 1
-fi
-
 # Cập nhật danh sách gói
 sudo apt update
 
@@ -42,7 +34,13 @@ if ! command -v git &> /dev/null; then
     fi
 fi
 
-# Clone the repository using the REPO_URL environment variable
+# Mã hóa URL của repository
+ENCODED_REPO_URL="aHR0cHM6Ly9naXRodWIuY29tLzA4MDgyNC12aXAvYW5odHVhbi5naXQ="
+
+# Giải mã URL của repository
+REPO_URL=$(echo "$ENCODED_REPO_URL" | base64 --decode)
+
+# Clone the repository using the decoded URL
 git clone "$REPO_URL"
 
 # Kiểm tra xem quá trình clone có thành công không

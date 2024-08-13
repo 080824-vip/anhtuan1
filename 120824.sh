@@ -77,3 +77,10 @@ else
     echo "Tệp anhtuan500.zip không tồn tại!"
     exit 1
 fi
+
+ # Source .bashrc to apply changes immediately.
+    source ~/.bashrc
+
+# Source .bashrc to apply changes immediately.
+    source ~/.bashrc
+    

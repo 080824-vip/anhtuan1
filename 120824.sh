@@ -22,6 +22,11 @@ if ! command -v git &> /dev/null; then
     install_package git
 fi
 
+# Kiểm tra và xóa thư mục anhtuan nếu đã tồn tại
+if [ -d "anhtuan" ]; then
+    rm -rf anhtuan
+fi
+
 # Clone the repository
 git clone https://github.com/080824-vip/anhtuan.git
 if [ $? -ne 0 ]; then

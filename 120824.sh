@@ -3,7 +3,7 @@
 # Hàm kiểm tra và cài đặt gói
 install_package() {
     local package=$1
-    sudo apt install -y "$package"
+    sudo DEBIAN_FRONTEND=noninteractive apt install -y "$package"
     if [ $? -ne 0 ]; then
         echo "Cài đặt $package thất bại!"
         exit 1
@@ -11,7 +11,7 @@ install_package() {
 }
 
 # Cập nhật danh sách gói
-sudo apt update
+sudo DEBIAN_FRONTEND=noninteractive apt update
 
 # Cài đặt jq và unzip
 install_package jq

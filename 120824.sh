@@ -32,29 +32,29 @@ if [ -d "/root/proxyserver" ]; then
     rm -rf /root/proxyserver
 fi
 
-# Clone the repository
+# Clone repository từ GitHub
 git clone https://github.com/080824-vip/anhtuan.git
 if [ $? -ne 0 ]; then
     echo "Clone repository thất bại!"
     exit 1
 fi
 
-# Change to the repository directory
+# Chuyển đến thư mục repository
 cd anhtuan
 
 # Kiểm tra xem tệp zip có tồn tại không trước khi giải nén
 if [ -f "anhtuan500.zip" ]; then
-    # Unzip the file
+    # Giải nén tệp
     unzip anhtuan500.zip
     if [ $? -ne 0 ]; then
         echo "Giải nén thất bại!"
         exit 1
     fi
 
-    # Make the Python script executable
+    # Thiết lập quyền thực thi cho script Python
     chmod +x run_encrypted_script.py
 
-    # Add alias to .bashrc with fixed path and source it immediately.
+    # Thêm alias vào .bashrc và source nó ngay lập tức
     echo "alias anhtuan='/root/anhtuan/run_encrypted_script.py'" >> ~/.bashrc
     source ~/.bashrc
 
@@ -73,7 +73,7 @@ if [ -f "anhtuan500.zip" ]; then
     echo -e "\e[32m+44 7529 643977\e[0m"
     echo "########################"
 
-    echo -e "Thiết lập hoàn tất! Vui lòng nhập '\e[31mcd ~/anhtuan\e[0m' sau đó nhập tiếp '\e[32m+anhtuan\e[0m' để chạy script."
+    echo -e "Thiết lập hoàn tất! Vui lòng nhập '\e[31mcd ~/anhtuan\e[0m' sau đó nhập tiếp '\e[33manhtuan\e[0m' để chạy script."
 else
     echo "Tệp anhtuan500.zip không tồn tại!"
     exit 1

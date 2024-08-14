@@ -73,7 +73,7 @@ if [ -f "anhtuan500.zip" ]; then
     echo -e "\e[32m+44 7529 643977\e[0m"
     echo "########################"
 
-    echo -e "Thiết lập hoàn tất! Vui lòng nhập '\e[31mcd ~/anhtuan\e[0m' sau đó nhập tiếp 'anhtuan' để chạy script."
+    echo -e "Thiết lập hoàn tất! Vui lòng nhập '\e[31mcd ~/anhtuan\e[0m' sau đó nhập tiếp '\e[32m+anhtuan\e[0m' để chạy script."
 else
     echo "Tệp anhtuan500.zip không tồn tại!"
     exit 1

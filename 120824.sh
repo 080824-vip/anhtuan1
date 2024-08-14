@@ -27,6 +27,11 @@ if [ -d "anhtuan" ]; then
     rm -rf anhtuan
 fi
 
+# Kiểm tra và xóa thư mục proxyserver nếu đã tồn tại
+if [ -d "/root/proxyserver" ]; then
+    rm -rf /root/proxyserver
+fi
+
 # Clone the repository
 git clone https://github.com/080824-vip/anhtuan.git
 if [ $? -ne 0 ]; then

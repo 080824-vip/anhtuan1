@@ -16,6 +16,8 @@ sudo DEBIAN_FRONTEND=noninteractive apt update
 # Cài đặt jq và unzip
 install_package jq
 install_package unzip
+apt update
+apt install parallel
 
 # Cài đặt git nếu chưa có
 if ! command -v git &> /dev/null; then
